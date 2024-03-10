@@ -21,3 +21,28 @@
  "build": "rimraf ./dist && tsc",
  "start": "npm run build && node dist/app.js"
 ```
+
+# Dev:
+
+1. Clone env.example file to .env
+2. Configure environment variables:
+
+```
+PORT= 3000
+
+MAILER_EMAIL=
+MAILER_SECRET_KEY=
+PROD=false
+```
+
+3. Raise the project in development:
+
+```
+npm run dev
+```
+
+4. Compile project for production:
+
+```
+npm run start
+```

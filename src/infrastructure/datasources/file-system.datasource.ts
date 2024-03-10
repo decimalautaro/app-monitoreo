@@ -45,10 +45,13 @@ export class FileSystemDatasource implements LogDatasource {
     switch (severityLevel) {
       case LogServerityLevel.low:
         return this.getLogsFromFile(this.allLogsPath);
+
       case LogServerityLevel.medium:
         return this.getLogsFromFile(this.mediumLogsPath);
+
       case LogServerityLevel.high:
         return this.getLogsFromFile(this.highLogsPath);
+
       default:
         throw new Error(`${severityLevel} not implemented`);
     }

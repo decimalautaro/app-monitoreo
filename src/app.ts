@@ -1,9 +1,10 @@
+import { enviroment } from "./config/enviroment";
 import { Server } from "./presentation/server";
 
 async () => {
   main();
 };
 
-const main = () => {
+function main() {
   Server.start();
-};
+}

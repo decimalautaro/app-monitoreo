@@ -4,8 +4,8 @@ import { LogRepository } from "../../repository/log.repository";
 interface CheckServiceUseCase {
   execute(url: string): Promise<boolean>;
 }
-type SuccesCallback = () => void;
-type ErrorCallback = (error: string) => void;
+type SuccesCallback = (() => void) | undefined;
+type ErrorCallback = ((error: string) => void) | undefined;
 
 export class CheckService {
   constructor(
@@ -25,7 +25,7 @@ export class CheckService {
         LogServerityLevel.low
       );
       this.logRepository.saveLog(log);
-      this.succesCallback();
+      this.succesCallback && this.succesCallback();
 
       return true;
     } catch (error) {
@@ -33,7 +33,7 @@ export class CheckService {
       const log = new LogEntity(errorMessage, LogServerityLevel.high);
 
       this.logRepository.saveLog(log);
-      this.errorCallback(errorMessage);
+      this.errorCallback && this.errorCallback(errorMessage);
       return false;
     }
   }

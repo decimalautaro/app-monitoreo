@@ -20,17 +20,24 @@ export class CheckService {
         throw new Error(`Error on check service ${url}`);
       }
 
-      const log = new LogEntity(
-        `Service ${url} working`,
-        LogServerityLevel.low
-      );
+      const log = new LogEntity({
+        message: `Service ${url} working`,
+        level: LogServerityLevel.low,
+        createdAt: new Date(),
+        origin: "check-services",
+      });
       this.logRepository.saveLog(log);
       this.succesCallback && this.succesCallback();
 
       return true;
     } catch (error) {
       const errorMessage = `${url} is not ok. ${error}`;
-      const log = new LogEntity(errorMessage, LogServerityLevel.high);
+      const log = new LogEntity({
+        message: errorMessage,
+        level: LogServerityLevel.high,
+        createdAt: new Date(),
+        origin: "check-services",
+      });
 
       this.logRepository.saveLog(log);
       this.errorCallback && this.errorCallback(errorMessage);

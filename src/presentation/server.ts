@@ -12,6 +12,9 @@ export class Server {
   public static start() {
     console.log("Server started...");
 
+    const emailService = new EmailService(fileSystemLogRepository);
+    emailService.sendEmailWithFileSystemLogs([""]);
+
     CronService.createJob("*/5 * * * * *", () => {
       const url = "https://google.com";
       new CheckService(

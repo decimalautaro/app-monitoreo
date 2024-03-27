@@ -35,13 +35,19 @@ MAILER_SECRET_KEY=
 PROD=false
 ```
 
-3. Raise the project in development:
+3. Install dependencies:
+
+```
+npm i
+```
+
+4. Raise the project in development:
 
 ```
 npm run dev
 ```
 
-4. Compile project for production:
+5. Compile project for production:
 
 ```
 npm run start

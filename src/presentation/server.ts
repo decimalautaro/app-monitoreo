@@ -1,8 +1,10 @@
 import { CronJob } from "cron";
 import { CronService } from "./cron/cron-service";
-import { CheckService } from "../domain/use-cases/checks/check-services";
+import { CheckService } from "../domain/use-cases/checks/check-service";
 import { LogRepositoryImpl } from "../infrastructure/repositories/log.repository.impl";
 import { FileSystemDatasource } from "../infrastructure/datasources/file-system.datasource";
+import { EmailService } from "./email/email-service";
+import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 
 const fileSystemLogRepository = new LogRepositoryImpl(
   new FileSystemDatasource()
@@ -10,6 +12,11 @@ const fileSystemLogRepository = new LogRepositoryImpl(
 export class Server {
   public static start() {
     console.log("Server started...");
+
+    // const emailService = new EmailService();
+    // new SendEmailLogs(emailService, fileSystemLogRepository).execute([
+    //   "decimalautaro@gmail.com",
+    // ]);
 
     CronService.createJob("*/5 * * * * *", () => {
       const url = "https://google.com";

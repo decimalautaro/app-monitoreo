@@ -13,10 +13,7 @@ export class Server {
   public static start() {
     console.log("Server started...");
 
-    // const emailService = new EmailService();
-    // new SendEmailLogs(emailService, fileSystemLogRepository).execute([
-    //   "decimalautaro@gmail.com",
-    // ]);
+    const emailService = new EmailService();
 
     CronService.createJob("*/5 * * * * *", () => {
       const url = "https://google.com";

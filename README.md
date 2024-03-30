@@ -22,7 +22,7 @@
  "start": "npm run build && node dist/app.js"
 ```
 
-# Dev:
+## Dev:
 
 1. Clone env.example file to .env
 2. Configure environment variables:
@@ -57,4 +57,12 @@ npm run dev
 
 ```
 npm run start
+```
+
+## Generate migrations in PRISMA ORM
+
+1.  Run command:
+
+```
+npx prisma migrate dev --name init
 ```

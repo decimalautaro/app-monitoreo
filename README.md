@@ -41,13 +41,19 @@ PROD=false
 npm i
 ```
 
-4. Raise the project in development:
+4. Raise database with the command:
+
+```
+docker-compose up -d
+```
+
+5. Raise the project in development:
 
 ```
 npm run dev
 ```
 
-5. Compile project for production:
+6. Compile project for production:
 
 ```
 npm run start

@@ -1,5 +1,5 @@
 import { enviroment } from "./config/enviroment";
-import { MongoDatabase } from "./data/mongodb";
+import { LogModel, MongoDatabase } from "./data/mongodb";
 import { Server } from "./presentation/server";
 
 (async () => {
@@ -12,5 +12,5 @@ async function main() {
     dbName: enviroment.MONGO_DB_NAME,
   });
 
-  // Server.start();
+  Server.start();
 }

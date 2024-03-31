@@ -7,10 +7,12 @@ import { EmailService } from "./email/email-service";
 import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 import { MongoLogDatasource } from "../infrastructure/datasources/mongo-log.datasource";
 import { LogServerityLevel } from "../domain/entities/log-entity";
+import { PostgresLogDatasource } from "../infrastructure/datasources/postgres-log.datasource";
 
 const logRepository = new LogRepositoryImpl(
-  new FileSystemDatasource()
+  // new FileSystemDatasource()
   // new MongoLogDatasource()
+  new PostgresLogDatasource()
 );
 export class Server {
   public static async start() {
@@ -18,17 +20,17 @@ export class Server {
 
     const emailService = new EmailService();
 
-    const logs = await logRepository.getLogs(LogServerityLevel.medium);
-    console.log(logs);
-    // CronService.createJob("*/5 * * * * *", () => {
-    //   const url = "https://google.com";
-    //   new CheckService(
-    //     logRepository,
-    //     () => console.log(`${url} is ok`),
-    //     (error) => console.log(error)
-    //   ).execute(url);
-    //   // new CheckService().execute("http://localhost:3000");
-    // });
+    // const logs = await logRepository.getLogs(LogServerityLevel.medium);
+    // console.log(logs);
+    CronService.createJob("*/5 * * * * *", () => {
+      const url = "https://google.com";
+      new CheckService(
+        logRepository,
+        () => console.log(`${url} is ok`),
+        (error) => console.log(error)
+      ).execute(url);
+      // new CheckService().execute("http://localhost:3000");
+    });
   }
 }
 

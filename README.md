@@ -22,7 +22,7 @@
  "start": "npm run build && node dist/app.js"
 ```
 
-# Dev:
+## Dev:
 
 1. Clone env.example file to .env
 2. Configure environment variables:
@@ -41,14 +41,28 @@ PROD=false
 npm i
 ```
 
-4. Raise the project in development:
+4. Raise database with the command:
+
+```
+docker-compose up -d
+```
+
+5. Raise the project in development:
 
 ```
 npm run dev
 ```
 
-5. Compile project for production:
+6. Compile project for production:
 
 ```
 npm run start
+```
+
+## Generate migrations in PRISMA ORM
+
+1.  Run command:
+
+```
+npx prisma migrate dev --name init
 ```

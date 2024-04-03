@@ -23,6 +23,8 @@ describe("init MongoDB", () => {
       });
 
       expect(true).toBe(false);
-    } catch (error) {}
+    } catch (error) {
+      return false;
+    }
   });
 });

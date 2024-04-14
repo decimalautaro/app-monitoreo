@@ -66,3 +66,15 @@ npm run start
 ```
 npx prisma migrate dev --name init
 ```
+
+2. Generate Prisma client:
+
+```
+npx prisma generate
+```
+
+3. Synchronize database with client:
+
+```
+npx prisma migrate dev
+```

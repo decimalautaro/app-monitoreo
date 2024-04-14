@@ -5,6 +5,7 @@ import { EmailService } from "./email/email-service";
 import { MongoLogDatasource } from "../infrastructure/datasources/mongo-log.datasource";
 import { PostgresLogDatasource } from "../infrastructure/datasources/postgres-log.datasource";
 import { CheckServiceMultiple } from "../domain/use-cases/checks/check-service-multiple";
+import { SendEmailLogs } from "../domain/use-cases/email/send-email-logs";
 
 const fsLogRepository = new LogRepositoryImpl(new FileSystemDatasource());
 const mongoLogRepository = new LogRepositoryImpl(new MongoLogDatasource());
@@ -17,8 +18,12 @@ export class Server {
 
     const emailService = new EmailService();
 
-    // const logs = await logRepository.getLogs(LogServerityLevel.medium);
-    // console.log(logs);
+    //TODO: Send email
+    // new SendEmailLogs(emailService, fsLogRepository).execute([
+    //   "prueba@prueba.net",
+    //   "prueba2@prueba.net",
+    // ]);
+
     CronService.createJob("*/5 * * * * *", () => {
       const url = "https://google.com";
       new CheckServiceMultiple(
